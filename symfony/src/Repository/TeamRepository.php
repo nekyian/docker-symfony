@@ -26,7 +26,7 @@ class TeamRepository extends ServiceEntityRepository
 	{
 		$teams = $this->createQueryBuilder('t')
 		            ->getQuery()
-		            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+		            ->getResult(2);
 		$teamsJson = json_encode($teams, JSON_PRETTY_PRINT);
 
 		return $teamsJson;

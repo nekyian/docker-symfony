@@ -8,6 +8,7 @@ use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use \PSS\SymfonyMockerContainer\DependencyInjection\MockerContainer;
 
 class Kernel extends BaseKernel
 {
@@ -58,4 +59,13 @@ class Kernel extends BaseKernel
         $routes->import($confDir.'/{routes}/'.$this->environment.'/**/*'.self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir.'/{routes}'.self::CONFIG_EXTS, '/', 'glob');
     }
+
+	protected function getContainerBaseClass()
+	{
+		if ('test' === $this->environment) {
+			return MockerContainer::class;
+		}
+
+		return parent::getContainerBaseClass();
+	}
 }

@@ -10,6 +10,9 @@ use App\Tests\TestCase;
 
 class ListTeamsTest extends TestCase
 {
+	/**
+	 *
+	 */
 	public function testListTeamsResponse()
 	{
 		$this->client->request('GET', '/teams');

@@ -1,5 +1,4 @@
-{
-  "teams": [
+[
     {
       "id": 7,
       "name": "Manchester United",
@@ -18,5 +17,4 @@
       "strip": "green",
       "firm": "weak"
     }
-  ]
-}
+]
