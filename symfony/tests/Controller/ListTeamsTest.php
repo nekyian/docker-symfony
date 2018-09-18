@@ -8,14 +8,14 @@
 
 use Lakion\ApiTestCase\JsonApiTestCase;
 
-class HelloWorldTest extends JsonApiTestCase
+class ListTeamsTest extends JsonApiTestCase
 {
-	public function testGetHelloWorldResponse()
+	public function testListTeamsResponse()
 	{
-		$this->client->request('GET', '/');
+		$this->client->request('GET', '/teams');
 
 		$response = $this->client->getResponse();
 
-		$this->assertResponse($response, 'hello_world');
+		$this->assertResponse($response, 'teams/list_response');
 	}
 }
