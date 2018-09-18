@@ -6,9 +6,9 @@
  * Time: 10:03
  */
 
-use Lakion\ApiTestCase\JsonApiTestCase;
+use App\Tests\TestCase;
 
-class ListTeamsTest extends JsonApiTestCase
+class ListTeamsTest extends TestCase
 {
 	public function testListTeamsResponse()
 	{
@@ -17,5 +17,13 @@ class ListTeamsTest extends JsonApiTestCase
 		$response = $this->client->getResponse();
 
 		$this->assertResponse($response, 'teams/list_response');
+	}
+
+	public function tearDown()
+	{
+		\Mockery::close();
+		$this->client = null;
+
+		static::ensureKernelShutdown();
 	}
 }
