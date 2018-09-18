@@ -18,12 +18,4 @@ class ListTeamsTest extends TestCase
 
 		$this->assertResponse($response, 'teams/list_response');
 	}
-
-	public function tearDown()
-	{
-		\Mockery::close();
-		$this->client = null;
-
-		static::ensureKernelShutdown();
-	}
 }
