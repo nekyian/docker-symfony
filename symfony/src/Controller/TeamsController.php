@@ -14,10 +14,10 @@ class TeamsController extends AbstractController
      */
     public function index()
     {
-	    $teams = $this->getDoctrine()->getRepository(Team::class)->findAll();
+		$teams = $this->getDoctrine()->getRepository(Team::class)->findAllTeams();
 
 	    $response = new Response();
-	    $response->setContent(json_encode($teams));
+	    $response->setContent($teams);
 	    $response->headers->set('Content-Type', 'application/json');
 
 	    return $response;

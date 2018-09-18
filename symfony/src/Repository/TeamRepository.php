@@ -19,10 +19,22 @@ class TeamRepository extends ServiceEntityRepository
         parent::__construct($registry, Team::class);
     }
 
-//    /**
-//     * @return Team[] Returns an array of Team objects
-//     */
-    /*
+	/**
+	 * @return Team[] Returns an array of Team arrays
+	 */
+	public function findAllTeams(): string
+	{
+		$teams = $this->createQueryBuilder('t')
+		            ->getQuery()
+		            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+		$teamsJson = json_encode($teams, JSON_PRETTY_PRINT);
+
+		return $teamsJson;
+	}
+
+    /**
+     * @return Team[] Returns an array of Team objects
+     */
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('t')
@@ -34,9 +46,7 @@ class TeamRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
-    /*
     public function findOneBySomeField($value): ?Team
     {
         return $this->createQueryBuilder('t')
@@ -46,5 +56,4 @@ class TeamRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
 }
