@@ -33,7 +33,7 @@ class Team
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="firm", type="string", length=255, unique=true)
+	 * @ORM\Column(name="firm", type="string", length=255)
 	 */
 	private $firm;
 
@@ -55,5 +55,30 @@ class Team
 	public function getFirm(): ?string
 	{
 		return $this->firm;
+	}
+
+	public function __toArray()
+	{
+		return [
+			'id' => $this->getId(),
+			'name' => $this->getName(),
+			'strip' => $this->getStrip(),
+			'firm' => $this->getFirm()
+		];
+	}
+
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+
+	public function setStrip($strip)
+	{
+		$this->strip = $strip;
+	}
+
+	public function setFirm($firm)
+	{
+		$this->firm = $firm;
 	}
 }

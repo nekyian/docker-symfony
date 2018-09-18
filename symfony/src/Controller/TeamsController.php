@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Team;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,22 +14,10 @@ class TeamsController extends AbstractController
      */
     public function index()
     {
-	    $response = new Response();
-	    $string = <<<EOF
-{
-	"items": [
-	  {
-		"id": 1,
-		"name": "Eminem",
-		"biography": "Pure Awesomness",
-		"featured": false,
-		"published_at": "2014-01-25T00:00:00+0000"
-	  }
-	]
-}
-EOF;
+	    $teams = $this->getDoctrine()->getRepository(Team::class)->findAll();
 
-	    $response->setContent($string);
+	    $response = new Response();
+	    $response->setContent(json_encode($teams));
 	    $response->headers->set('Content-Type', 'application/json');
 
 	    return $response;

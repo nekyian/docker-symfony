@@ -1,11 +1,22 @@
 {
-  "items": [
+  "teams": [
     {
       "id": 1,
-      "name": "Eminem",
-      "biography": "Pure Awesomness",
-      "featured": false,
-      "published_at": "2014-01-25T00:00:00+0000"
-    }
+      "name": "Manchester United",
+      "strip": "red",
+      "firm": "weak"
+    },
+    {
+      "id": 1,
+      "name": "Liverpool",
+      "strip": "black",
+      "firm": "strong"
+    },
+    {
+      "id": 1,
+      "name": "Chelsea",
+      "strip": "green",
+      "firm": "weak"
+    },
   ]
 }
