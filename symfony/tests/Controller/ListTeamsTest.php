@@ -54,11 +54,17 @@ class ListTeamsTest extends TestCase
 	 */
 	public function testCreateTeamResponse()
 	{
-		$this->client->request('POST', '/team');
+		$this->client->request('POST', '/team', [
+			'name' => 'Arsenal',
+			'strip' => 'red-white',
+			'firm' => 'very strong',
+			'league' => 2,
+		]);
 
 		$response = $this->client->getResponse();
 
-		$this->assertSame(200, $response->getStatusCode());
+		$this->assertSame(201, $response->getStatusCode());
+		$this->assertTrue($response->hasHeader('Location'));
 		$this->assertResponse($response, 'teams/create_team_response');
 	}
 }

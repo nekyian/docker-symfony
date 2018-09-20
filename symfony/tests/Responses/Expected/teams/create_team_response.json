@@ -1,3 +1,15 @@
 {
-  "status": "OK"
+  "data": {
+    "type": "team",
+    "id": "4",
+    "attributes": {
+      "name": "Arsenal",
+      "strip": "red",
+      "firm": "very strong",
+      "league": "10"
+    },
+    "links": {
+      "self": "http://greenstreetleague.local/teams/4"
+    }
+  }
 }

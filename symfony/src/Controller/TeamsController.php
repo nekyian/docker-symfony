@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\League;
 use App\Entity\Team;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,7 +52,19 @@ class TeamsController extends AbstractController
 			true
 		);
 
+		$team = new Team();
+		$team->setName($data['name']);
+		$team->setStrip($data['strip']);
+		$team->setFirm($data['firm']);
+		$league = $this->getDoctrine()->getRepository(League::class)->find($data['league']);
+		$team->setLeague($league);
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($team);
+		$em->flush();
+
 		$response = new Response();
+		$response->setStatusCode(Response::HTTP_CREATED);
+		$response->headers->set('Location', $request->getSchemeAndHttpHost() . '/' . $team->getId());
 		$response->setContent(json_encode([
 			'status' => 'OK'
 		]));
