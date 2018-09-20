@@ -48,4 +48,17 @@ class ListTeamsTest extends TestCase
 		$this->assertSame(200, $response->getStatusCode());
 		$this->assertResponse($response, 'teams/list_by_league_empty_response');
 	}
+
+	/**
+	 *
+	 */
+	public function testCreateTeamResponse()
+	{
+		$this->client->request('POST', '/team');
+
+		$response = $this->client->getResponse();
+
+		$this->assertSame(200, $response->getStatusCode());
+		$this->assertResponse($response, 'teams/create_team_response');
+	}
 }
