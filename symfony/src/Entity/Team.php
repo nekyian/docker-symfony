@@ -91,4 +91,9 @@ class Team
 	{
 		$this->firm = $firm;
 	}
+
+	public function setLeague($league)
+	{
+		$this->league = $league;
+	}
 }

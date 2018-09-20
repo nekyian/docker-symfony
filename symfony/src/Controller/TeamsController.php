@@ -22,4 +22,18 @@ class TeamsController extends AbstractController
 
 	    return $response;
     }
+
+	/**
+	 * @Route("/teams/{league}", name="teams_by_league_list", requirements={"league"="\d+"})
+	 */
+	public function getTeamsByLeague($league)
+	{
+		$teams = $this->getDoctrine()->getRepository(Team::class)->findAllTeamsByLeague($league);
+
+		$response = new Response();
+		$response->setContent($teams);
+		$response->headers->set('Content-Type', 'application/json');
+
+		return $response;
+	}
 }

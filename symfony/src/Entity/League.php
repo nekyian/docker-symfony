@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LeagueRepository")
@@ -35,11 +37,11 @@ class League
 	}
 
 	/**
-	 * @return Collection|Product[]
+	 * @return Collection|Team[]
 	 */
-	public function getProducts(): Collection
+	public function getTeams(): Collection
 	{
-		return $this->products;
+		return $this->teams;
 	}
 
     public function getId(): ?int
@@ -50,4 +52,11 @@ class League
     public function getName(): ?string
     {
         return $this->name;
-    }}
+    }
+
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+
+}

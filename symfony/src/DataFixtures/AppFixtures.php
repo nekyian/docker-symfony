@@ -17,21 +17,46 @@ class AppFixtures extends Fixture
 {
 	public function load(ObjectManager $manager)
 	{
+		$leagues = [
+			[
+				'name' => 'Premier League',
+			],
+			[
+				'name' => 'Second Division',
+			],
+			[
+				'name' => 'Third Division',
+			]
+		];
+
+		$i = 0;
+		foreach ( $leagues as $league ) {
+			$leagueEntity = new League();
+			$leagueEntity->setName($league['name']);
+			$manager->persist($leagueEntity);
+			if ($i === 0)
+				$premierLeagueEntity = $leagueEntity;
+			$i++;
+		}
+
 		$teams = [
 			[
 				'name' => 'Manchester United',
 				'strip' => 'red',
-				'firm' => 'weak'
+				'firm' => 'weak',
+				'league' => $premierLeagueEntity
 			],
 			[
 				'name' => 'Liverpool',
 				'strip' => 'black',
-				'firm' => 'strong'
+				'firm' => 'strong',
+				'league' => $premierLeagueEntity
 			],
 			[
 				'name' => 'Chelsea',
 				'strip' => 'green',
-				'firm' => 'weak'
+				'firm' => 'weak',
+				'league' => $premierLeagueEntity
 			]
 		];
 
@@ -40,6 +65,7 @@ class AppFixtures extends Fixture
 			$teamEntity->setName($team['name']);
 			$teamEntity->setStrip($team['strip']);
 			$teamEntity->setFirm($team['firm']);
+			$teamEntity->setLeague($team['league']);
 			$manager->persist($teamEntity);
 
 		}

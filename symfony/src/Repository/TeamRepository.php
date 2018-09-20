@@ -32,6 +32,22 @@ class TeamRepository extends ServiceEntityRepository
 		return $teamsJson;
 	}
 
+	/**
+	 * @return Team[] Returns an array of Team arrays in given League
+	 */
+	public function findAllTeamsByLeague($leagueId): ?string
+	{
+		$teams = $this->createQueryBuilder('t')
+		            ->andWhere('t.league = :val')
+		            ->setParameter('val', $leagueId)
+		            ->getQuery()
+		            ->getResult(2);
+
+		$teamsJson = json_encode($teams, JSON_PRETTY_PRINT);
+
+		return $teamsJson;
+	}
+
     /**
      * @return Team[] Returns an array of Team objects
      */
