@@ -24,6 +24,24 @@ class League
 	 */
 	private $name;
 
+	/**
+	 * @ORM\OneToMany(targetEntity="App\Entity\Team", mappedBy="league")
+	 */
+	private $teams;
+
+	public function __construct()
+	{
+		$this->teams = new ArrayCollection();
+	}
+
+	/**
+	 * @return Collection|Product[]
+	 */
+	public function getProducts(): Collection
+	{
+		return $this->products;
+	}
+
     public function getId(): ?int
     {
         return $this->id;

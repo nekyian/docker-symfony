@@ -37,6 +37,16 @@ class Team
 	 */
 	private $firm;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\League", inversedBy="teams")
+	 */
+	private $league;
+
+	public function getLeague(): ?League
+	{
+		return $this->league;
+	}
+
 	public function getId(): ?int
 	{
 		return $this->id;
